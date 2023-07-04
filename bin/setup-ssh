@@ -30,6 +30,7 @@ else
   log-info "Generating SSH_HOST_KEY from ssh-keyscan against $ssh_host:$ssh_port"
   ssh-keyscan -H -p "$ssh_port" "$ssh_host" >>~/.ssh/known_hosts
   chmod 600 "~/.ssh/known_hosts"
+  log-info "Test"
 fi
 
 log-info "Adding SSH Key to ssh-agent"
