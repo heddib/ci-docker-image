@@ -15,31 +15,8 @@ fi
 log-info "Setting up SSH Key"
 
 mkdir -p ~/.ssh
-echo "$SSH_PRIVATE_KEY" | tr -d '\r' >~/.ssh/id_rsa
+echo $SSH_KEY | base64 -d > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
-chmod 700 ~/.ssh
 
-touch ~/.ssh/known_hosts
+log-info "Finished setting up SSH Key"
 
-if [ -n "$SSH_HOST_KEY" ]; then
-  log-info "Adding SSH_HOST_KEY to known_hosts"
-  echo "$SSH_HOST_KEY" >>"~/.ssh/known_hosts"
-  chmod 600 "~/.ssh/known_hosts"
-else
-  ssh_port=$(parse-ssh-port)
-  ssh_host=$(parse-ssh-host)
-
-  log-info "Generating SSH_HOST_KEY from ssh-keyscan against $ssh_host:$ssh_port"
-  log-info "Test-"
-  cat ~/.ssh/known_hosts
-  log-info "Test 1-"
-  echo " " >>~/.ssh/known_hosts
-  ssh-keyscan -H -p "$ssh_port" "$ssh_host" >>~/.ssh/known_hosts
-  log-info "Test"
-  chmod 600 "~/.ssh/known_hosts"
-  log-info "Test 2-"
-fi
-
-log-info "Adding SSH Key to ssh-agent"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
