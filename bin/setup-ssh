@@ -31,6 +31,8 @@ else
 
   log-info "Generating SSH_HOST_KEY from ssh-keyscan against $ssh_host:$ssh_port"
   log-info "Test-"
+  cat ~/.ssh/known_hosts
+  log-info "Test 1-"
   ssh-keyscan -H -p "$ssh_port" "$ssh_host" >>~/.ssh/known_hosts
   log-info "Test"
   chmod 600 "~/.ssh/known_hosts"
