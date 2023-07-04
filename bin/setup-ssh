@@ -33,7 +33,7 @@ else
   ssh-keyscan -H -p "$ssh_port" "$ssh_host" >>~/.ssh/known_hosts
   log-info "Test"
   chmod 600 "~/.ssh/known_hosts"
-  log-info "Test 2"
+  log-info "Test 2-"
 fi
 
 log-info "Adding SSH Key to ssh-agent"
