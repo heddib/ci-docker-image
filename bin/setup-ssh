@@ -34,4 +34,4 @@ fi
 
 log-info "Adding SSH Key to ssh-agent"
 eval "$(ssh-agent -s)"
-ssh-add /root/.ssh/id_rsa
+echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - >/dev/null
