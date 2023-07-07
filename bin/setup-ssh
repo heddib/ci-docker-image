@@ -19,6 +19,9 @@ echo "$SSH_PRIVATE_KEY" | tr -d '\r' >~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 chmod 700 ~/.ssh
 
+touch ~/.ssh/known_hosts
+chmod 644 ~/.ssh/known_hosts
+
 if [ -n "$SSH_HOST_KEY" ]; then
   log-info "Adding SSH_HOST_KEY to known_hosts"
   echo "$SSH_HOST_KEY" >>"~/.ssh/known_hosts"
