@@ -29,6 +29,9 @@ fi
 if [ -n "$PLUGIN_REVIEW_APP_NAME" ]; then
   export REVIEW_APP_NAME="$PLUGIN_REVIEW_APP_NAME"
 fi
+if [ -n "$PLUGIN_REVIEW_APP_DOMAIN" ]; then
+  export REVIEW_APP_DOMAIN="$PLUGIN_REVIEW_APP_DOMAIN"
+fi
 
 if [ -z "$BRANCH" ]; then
   BRANCH="master"
@@ -88,7 +91,7 @@ git config --global --add safe.directory "$PWD"
 if [ -f "bin/ci-pre-deploy" ]; then
   log-info "Executing bin/ci-pre-deploy script"
   chmod +x bin/ci-pre-deploy
-  APP_NAME="$remote_app_name" IS_REVIEW_APP="$is_review_app" SSH_REMOTE="$ssh_remote" bin/ci-pre-deploy
+  APP_NAME="$remote_app_name" IS_REVIEW_APP="$is_review_app" SSH_REMOTE="$ssh_remote" REVIEW_APP_DOMAIN="$REVIEW_APP_DOMAIN" bin/ci-pre-deploy
 fi
 
 if [[ -f ci-commit-override ]]; then

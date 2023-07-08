@@ -1,0 +1,10 @@
+#!/bin/sh -l
+if [ "$IS_REVIEW_APP" = "true" ]; then
+    if [ -z "$REVIEW_APP_DOMAIN" ]; then
+        echo "No review app domain specified, setting default"
+        REVIEW_APP_DOMAIN="dokku.me"
+    fi
+
+    ssh "$SSH_REMOTE" -- config:set "$APP_NAME" "DOMAIN=$APP_NAME.$REVIEW_APP_DOMAIN"
+    echo "configured the review app domain"
+fi
