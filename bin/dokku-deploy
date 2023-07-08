@@ -39,6 +39,7 @@ fi
 
 setup-ssh
 
+cd "/app"
 ls -al .
 
 commit_sha="$(parse-ci-commit)"
