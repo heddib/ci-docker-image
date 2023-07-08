@@ -8,6 +8,6 @@ if [ "$IS_REVIEW_APP" = "true" ]; then
     ssh "$SSH_REMOTE" -- domains:set "$APP_NAME" "$APP_NAME.$REVIEW_APP_DOMAIN"
 
     # enable letsencrypt
-    ssh "$SSH_REMOTE" -- letsencrypt enable "$APP_NAME"
+    ssh "$SSH_REMOTE" -- letsencrypt:enable "$APP_NAME"
     echo "configured the review app domain"
 fi
