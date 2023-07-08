@@ -5,8 +5,6 @@ if [ -n "$TRACE" ]; then
   set -x
 fi
 
-echo "Parsing CI commit"
-
 value="$CI_COMMIT"
 if [ -n "$CI_COMMIT" ]; then
   true
