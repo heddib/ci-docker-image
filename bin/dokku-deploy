@@ -80,6 +80,7 @@ if [ -n "$REVIEW_APP_NAME" ] && [ "$app_name" != "$REVIEW_APP_NAME" ]; then
   is_review_app="true"
   remote_app_name="$REVIEW_APP_NAME"
   GIT_REMOTE_URL="${GIT_REMOTE_URL%"/$app_name"}/${REVIEW_APP_NAME}"
+  echo "Setting GIT_REMOTE_URL to $GIT_REMOTE_URL"
 fi
 
 git config --global --add safe.directory "$PWD"
