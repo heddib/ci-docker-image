@@ -39,6 +39,8 @@ fi
 
 setup-ssh
 
+ls -al .
+
 commit_sha="$(parse-ci-commit)"
 echo "Commit SHA: $commit_sha"
 app_name="$(parse-app-name)"
