@@ -40,7 +40,6 @@ fi
 setup-ssh
 
 commit_sha="$(parse-ci-commit)"
-echo "Commit SHA: $commit_sha"
 app_name="$(parse-app-name)"
 ssh_remote="ssh://dokku@$(parse-ssh-host):$(parse-ssh-port)"
 
@@ -87,7 +86,7 @@ if [ -n "$REVIEW_APP_NAME" ] && [ "$app_name" != "$REVIEW_APP_NAME" ]; then
   echo "Setting GIT_REMOTE_URL to $GIT_REMOTE_URL"
 fi
 
-git config --global --add safe.directory "$PWD"
+git config --global --add safe.directory "$(pwd)"
 
 if [ -f "bin/ci-pre-deploy" ]; then
   log-info "Executing bin/ci-pre-deploy script"
@@ -107,5 +106,6 @@ else
   log-info "Pushing to Dokku Host"
   # shellcheck disable=SC2086
   cd "/app"
+  git config --global --add safe.directory "$(pwd)"
   git push $GIT_PUSH_FLAGS "$GIT_REMOTE_URL" "$commit_sha:$BRANCH"
 fi
